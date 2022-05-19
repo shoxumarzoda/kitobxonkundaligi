@@ -1,0 +1,79 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<!-- contact info section starts  -->
+
+<section class="info-container">
+
+    <div class="box-container">
+
+        <div class="box">
+            <i class="fas fa-map"></i>
+            <h3>Manzil</h3>
+            <p>Termiz, Uzbekiston - 109108</p>
+        </div>
+
+        <div class="box">
+            <i class="fas fa-envelope"></i>
+            <h3>email</h3>
+            <p>firuzaxon78@gmail.com</p>
+            <p>firuzaxonim78@mail.ru</p>
+        </div>
+
+        <div class="box">
+            <i class="fas fa-phone"></i>
+            <h3>Tell:</h3>
+            <p>+998 90 521 15 10</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- contact info section ends -->
+
+<!-- contact section starts  -->
+
+<section class="contact">
+
+    <form action="">
+        <h3>Aloqaga chiqish</h3>
+        <p>Foydalanuvchida mavjud savollar bilan murojat qilish mumkin? Saytdagi xatoliklardan habardor qilishingiz mumkin!</p>
+        <div class="inputBox">
+            <input type="text" placeholder="ismingizni kiriting">
+            <input type="email" placeholder="email kiriting">
+        </div>
+        <div class="inputBox">
+            <input type="number" placeholder="tell nomeringiz">
+            <input type="text" placeholder="mavzu nomi">
+        </div>
+        <textarea name="" placeholder="xabar mazmuni" id="" cols="30" rows="10"></textarea>
+        <input type="submit" value="yuborish" class="btn">
+    </form>
+
+    <iframe class="map" src="https://www.google.com/maps/place/Termiz,+O%60zbekiston/@37.247099,67.2449086,12z/data=!3m1!4b1!4m5!3m4!1s0x3f352e173b0cde4d:0xa31265ffc41a5d36!8m2!3d37.2610748!4d67.30859769224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63aceef0c69%3A0x2aa80cf2287dfa3b!2sJogeshwari%20West%2C%20Mumbai%2C%20Maharashtra%20400047!5e0!3m2!1sen!2sin!4v1638365961619!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+
+</section>
+
+<!-- contact section ends -->
+
+<!-- newsletter section starts  -->
+
+<section class="newsletter">
+
+    <div class="content">
+        <h3>Yangiliklar</h3>
+        <p>Yangiliklardan habardor bo'lish</p>
+    </div>
+
+    <form action="">
+        <input type="email" name="" placeholder="email kiriting" id="" class="email">
+        <input type="submit" value="yuborish" class="btn">
+    </form>
+
+</section>
+
+<!-- newsletter section ends -->
+
+
+{% endblock content %}

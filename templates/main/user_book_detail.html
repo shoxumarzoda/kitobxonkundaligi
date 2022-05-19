@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% load static %}
+
+<section class="about">
+
+    <div class="image">
+        <img src="{{selected_book.image.url}}" alt="">
+    </div>
+
+    <div class="content">
+        <h3>{{ selected_book.name }}</h3>
+        {% if selected_book.complete %}
+                   <h3 style="color: green">O'qilgan</h3>
+        {% else %}
+                  <h3  style="color: red">O'qilmagan</h3>
+        {% endif %}
+
+        <p>{{ selected_book.description|linebreaks }}</p>
+        <p>{{ selected_book.comment|linebreaks }}</p>
+        <p>{{ selected_book.time_created }}</p>
+        <a href="{{ selected_book.file.url }}" download="{{ selected_book.file.url }}" class="btn">Yuklab olish</a>
+    </div>
+
+</section>
+
+
+{% endblock content %}

@@ -1,0 +1,165 @@
+{% load static %}
+{% load book_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- swiper css link  -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- cusom css file link  -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+<!-- header section starts  -->
+
+<header class="header">
+     <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+     </div>
+     <a href="{%  url 'home' %}" class="logo"> <i class="fas fa-book-open"></i> Kitobxon Kundaligi </a>
+
+    <form action="" class="search-form">
+        <input type="search" id="search-box" placeholder="qidirish...">
+        <label for="search-box" class="fas fa-search"></label>
+    </form>
+
+    <div class="icons">
+        <div id="search-btn" class="fas fa-search"></div>
+        <a href="{% url 'login' %}" class="fas fa-home"></a>
+        <a href="{% url 'user_books' %}" class="fas fa-box-open"></a>
+        <a href="{% url 'contact' %}" class="fas fa-envelope"></a>
+        {% if request.user.is_authenticated %}
+         <a href="{% url 'customer_update' %}" class="fas fa-user"></a>
+
+        {% endif %}
+        <a href="{% url 'logout' %}" class="fas fa-sign-out-alt"></a>
+
+    </div>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- side-bar section starts -->
+
+<div class="side-bar">
+
+    <div id="close-side-bar" class="fas fa-times"></div>
+{#    user image, name, count books #}
+
+    <div class="user">
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'customer_update' %}">
+            <img src="{{user.customer.profile_pic.url}}" alt="user - image"></a>
+                <h3> Assalomu aleykum {{request.user|title}} ! </h3>
+                <h3 style="margin:0">Sizda <i style="color: green">{{ count }}</i> ta kitoblar bor</h3>
+        {% else %}
+
+            <img src="{% static 'images/user-img.png' %}" alt="user - image">
+             <h3> Assalomu aleykum {{request.user|title}} </h3>
+            <h3 style="color: red">Siz ro'yhatdan o'tmagansiz</h3>
+        {% endif %}
+
+    </div>
+
+    <nav class="navbar">
+        <a href="{% url 'home' %}"> <i class="fas fa-angle-right"></i> Bosh sahifa </a>
+
+        <a href="{% url 'user_books' %}"> <i class="fas fa-angle-right"></i> Men o'qigan asarlar </a>
+        <a href="{% url 'contact' %}"> <i class="fas fa-angle-right"></i> Bog'lanish </a>
+        <a href="{% url 'login' %}"> <i class="fas fa-angle-right"></i> kirish </a>
+        <a href="{% url 'register' %}"> <i class="fas fa-angle-right"></i> ro'yhatdan o'tish </a>
+
+        <a href="{% url 'logout' %}" style="color: red"> <i class="fas fa-angle-right"></i>Accountdan chiqish</a>
+
+    </nav>
+
+</div>
+
+<!-- side-bar section ends -->
+
+<!-- home section starts  -->
+ {% if request.user.is_authenticated %}
+<section class="home">
+
+    {% csrf_token %}
+    {% get_top_books as top_books %}
+    <div class="swiper home-slider">
+
+        <div class="swiper-wrapper">
+            {% for top_book in top_books %}
+
+                    <div class="swiper-slide slide">
+                        <div class="image">
+                            <img src="{{top_book.image.url}}" alt="">
+                        </div>
+                        <div class="content">
+                            <span>{{  top_book.category }}</span>
+                            <h3>{{ top_book.name }}</h3>
+                            <a href="{% url 'user_books_detail' top_book.pk %}" class="btn">Hoziroq o'qish</a>
+                        </div>
+                    </div>
+
+            {% endfor %}
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+    </div>
+
+</section>
+{% endif %}
+<!-- home section ends -->
+
+{% block content %}
+
+{% endblock content %}
+
+
+<!-- footer section starts  -->
+
+<section class="quick-links">
+
+    <a href="{% url 'home' %}" class="logo"> <i class="fas fa-book-open"></i> Kitobxon Kundaligi </a>
+
+    <div class="links">
+        <a href="{% url 'home' %}"> Bosh sahifa </a>
+
+        <a href="{% url 'user_books' %}"> Kitoblarim </a>
+        <a href="{% url 'contact' %}"> Bog'lanish </a>
+        <a href="{% url 'login' %}"> Kirish </a>
+        <a href="{% url 'register' %}"> Ro'yhatdan o'tish </a>
+
+    </div>
+
+    <div class="share">
+        <a href="#" class="fab fa-facebook-f"></a>
+        <a href="#" class="fab fa-twitter"></a>
+        <a href="#" class="fab fa-instagram"></a>
+        <a href="#" class="fab fa-linkedin"></a>
+    </div>
+
+</section>
+
+
+<!-- footer section ends -->
+
+<!-- swiper js link      -->
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<!-- custom js file link  -->
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

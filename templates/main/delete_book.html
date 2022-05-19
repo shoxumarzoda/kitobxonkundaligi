@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<section class="login">
+
+    <form method="POST">
+        {% csrf_token %}
+        <h3>O'chirish</h3>
+        <p>Siz rostdan ham <span style="color: red">{{book.name}}</span> nomli kitobni o'chirishni xoxlaysizmi?</p>
+        <input type="submit" value="Tasdiqlash" class="btn">
+    </form>
+
+</section>
+
+
+{% endblock content %}

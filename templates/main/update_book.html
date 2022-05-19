@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% load static %}
+{% load widget_tweaks %}
+<section  class="login">
+
+    <form  method="post" enctype="multipart/form-data">
+       {% csrf_token %}
+         <h3>Yangi kitob qo'shish</h3>
+        {{ form.non_field_errors }}
+        <div class="inputBox">
+        <p><label>{{form.name.label}}</label> <br>{{form.name| add_class:"box"}}</p>
+        </div>
+
+        <p><label>{{form.author_name.label}}</label> <br>{{form.author_name| add_class:"box"}}</p>
+        <p><label>{{form.book_heroes.label}}</label> <br>{{form.book_heroes| add_class:"box"}}</p>
+
+
+        <p><label>{{form.description.label}}</label> <br>{{form.description| add_class:"box"}}</p>
+
+        <p><label>{{form.comment.label}}</label> <br>{{form.comment| add_class:"box"}}</p>
+        <p><label>{{form.complete.label}}</label> <br>{{form.complete| add_class:"box"}}</p>
+        <p><label>{{form.image.label}}</label> <br>{{form.image| add_class:"box"}}</p>
+        <p><label>{{form.file.label}}</label> <br>{{form.file| add_class:"box"}}</p>
+        <p><label>{{form.category.label}}</label> <br>{{form.category| add_class:"box"}}</p>
+
+
+        <input type="submit" value="Saqlash" class="btn">
+    </form>
+
+</section>
+{% endblock content %}

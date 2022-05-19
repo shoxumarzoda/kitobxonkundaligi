@@ -1,0 +1,130 @@
+
+{% extends 'main/base.html' %}
+{% load book_tags %}
+<!-- banner section starts  -->
+{% load static %}
+{% block content %}
+
+
+<!-- about section starts  -->
+
+<section class="about">
+
+    <div class="image">
+        <img src="{% static 'images/children.jpg' %}" alt="">
+    </div>
+
+    <div class="content">
+        <h3>Biz haqimizda</h3>
+        <p>Hurmatli kitobsevarlar,Kitobxonlikni rivojlantirish va rag‘batlantirish uchun raqamli tashabbusning asosiy maqsadi:
+        <br>- o‘quvchilarning bo‘sh vaqtlarida kitob o‘qishni rag‘batlantirish
+        <br>- maktabda kreativ o‘qishni targ‘ib qilish.
+        <br>“Kitobxon kundalik”lari adabiy suhbatni qo‘llab-quvvatlaydi. O‘quvchilar va o‘qituvchilar o‘rtasidagi muloqot rivojlantiriladi.
+        <br>Ushbu sayt boshlang‘ich sinf o‘quvchilari uchun mo‘ljallangan bo‘lib, asosiy e’tibor o‘quvchilarning kreativ o‘qish madaniyatini rivojlantirishga qaratilgan.
+</p>
+        <a href="#" class="btn">Ko'proq o'qish</a>
+    </div>
+
+</section>
+
+<!-- about section ends -->
+
+<!-- faq section starts  -->
+
+<section class="faq">
+
+    <h1 class="heading"> Savollar & <span>Javoblar</span> </h1>
+
+    <div class="accordion-container">
+
+        <div class="accordion">
+            <div class="accordion-heading">
+                <h3>web saytdan qanday foydalanish kerak?</h3>
+                <i class="fas fa-angle-down"></i>
+            </div>
+            <p class="accordioin-content">
+                Har bir kitobxon login paroli bilan kiradi, o‘qigan kitoblarining muallifi, kitob rekvizitlari, qachon o‘qib boshladi va qachon tugatganligi haqida ma’lumotlarni joylash orqali adabiyot bilan ishlash ko‘nikmalari shakllanadi.
+            </p>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-heading">
+                <h3>Asar voqeasi qayerda sodir bo‘lgan va sizga qanday ta’sir qildi?</h3>
+                <i class="fas fa-angle-down"></i>
+            </div>
+            <p class="accordioin-content">
+                Asarda qaysi hudud tasvirlanganligi, voqealar rivoji bo‘lgan joy haqida qanday ma’lumotga egaligi, u joyda bo‘lgan yoki bo‘lmaganligi haqida ma’lumot beradi.
+            </p>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-heading">
+                <h3>Asardan qaysi parchalar sizga ko‘proq yoqdi?</h3>
+                <i class="fas fa-angle-down"></i>
+            </div>
+            <p class="accordioin-content">
+                Asarda o‘ziga yoqqan parchani ko‘chirib yozadi va nima uchun yoqqanligini izohlaydi.
+            </p>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-heading">
+                <h3>Qaysi asar qahramoni sizga yoqdi?</h3>
+                <i class="fas fa-angle-down"></i>
+            </div>
+            <p class="accordioin-content">
+                Asar qahramonlarining salbiy yoki ijobiy xususiyatlari, ularning qaysi xislatlari, nima uchun yoqqanligi haqida ma’lumot kiritadi. Qahramon rasmini yoki
+                u qatnashgan syujetni chizib, joylashtirishi ham mumkin. Bu esa o‘quvchilarda mustaqil fikrlash, o‘zi tasavvur qilgan qahramon rasmini chizish  ko‘nikmasini shakllantirishga xizmat qiladi.
+            </p>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-heading">
+                <h3>sizning fikringiz?</h3>
+                <i class="fas fa-angle-down"></i>
+            </div>
+            <p class="accordioin-content">
+                Bunda o‘quvchi yozuvchi o‘rnida bo‘lsa asarga qanday o‘zgartirish kiritishi, voqealar rivoji qanday yakunlanishi haqida shaxsiy fikrini yozadi. Bu jarayon to‘g‘ri tashkil etib borilsa,
+                o‘quvchilarning kreativ fikrlash qobiliyatlari rivojlanadi, ijodiy faoliyatga yo‘naltiriladi.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- faq section ends -->
+
+<!-- review section starts  -->
+
+<section class="review">
+
+    <h1 class="heading"> faol  <span>foydalanuvchilar</span> </h1>
+
+    <div class="swiper review-slider">
+
+        <div class="swiper-wrapper">
+            {% get_top_users as top_users %}
+                {% for top_user in top_users %}
+
+                    <div class="swiper-slide slide">
+                        <img src="{{top_user.customer.profile_pic.url}}" alt="user-logo">
+                        <h3>{{top_user|title}}</h3>
+                        <span>{{top_user.email}}</span>
+                        <p>{{top_user.customer.interesting|linebreaks}}</p>
+                    </div>
+
+                {% endfor %}
+
+
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- review section ends -->
+
+
+{% endblock content %}

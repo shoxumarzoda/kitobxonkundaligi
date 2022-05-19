@@ -1,0 +1,91 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+{% load static %}
+<!-- category section starts  -->
+
+<section class="category">
+    {% csrf_token %}
+    <h1 class="heading"> Bo'limlar bo'yicha <span>tanlang!</span> </h1>
+
+    <div class="box-container">
+
+        <a href="#" class="box">
+            <img src="{% static 'images/tomaris.png' %}" alt="">
+            <h3>Milliy adabiyot</h3>
+        </a>
+        <a href="#" class="box">
+            <img src="{% static 'images/dao.png' %}" alt="">
+            <h3>Jahon adabiyoti</h3>
+        </a>
+        <a href="#" class="box">
+            <img src="{% static 'images/tarix.png' %}" alt="">
+            <h3>Darslik uchun adabiyotlar</h3>
+        </a>
+
+
+    </div>
+
+</section>
+
+<!-- category section ends -->
+
+<!-- products section starts  -->
+
+<section class="products">
+
+    <h1 class="heading"> Men o'qigan <span>asarlar</span> </h1>
+
+    <div class="box-container">
+        {% for user_book in user_books %}
+
+        <div class="box">
+            <div class="image">
+                <img src="{{ user_book.image.url }}" class="main-img" alt="">
+                <img src="{{ user_book.image.url }}" class="hover-img" alt="">
+                <div class="icons">
+                    <a href="{% url 'user_books_detail' user_book.pk %}" class="fas fa-book-reader"></a>
+                    <a href="{% url 'book_update' user_book.pk %}" class="fas fa-book"></a>
+                    <a href="{% url 'delete_view_book' user_book.pk %}" class="fas fa-shopping-basket"></a>
+                </div>
+            </div>
+            <div class="content">
+                <h3>{{ user_book.name }}</h3>
+                 {% if user_book.complete %}
+                   <h3 style="color: green">O'qilgan</h3>
+                 {% else %}
+                  <h3 style="color: red">O'qilmagan</h3>
+                 {% endif %}
+                <div class="price">{{ user_book.category }}</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+        </div>
+
+
+        {% endfor %}
+           <a href="{% url 'add_new_user_book' %}">
+        <div class="box">
+            <div class="image">
+                <img src="{% static 'images/add_96px.png' %}" class="main-img" alt="">
+                <img src="{% static 'images/add_96px.png' %}" class="hover-img" alt="">
+            </div>
+            <div class="content">
+             <h3>Yangi kitob qo'shish</h3>
+
+            </div>
+        </div>
+               </a>
+    </div>
+
+</section>
+
+<!-- products section ends -->
+
+<!-- product banner section starts  -->
+{% endblock content %}
